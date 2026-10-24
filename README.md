@@ -1,3 +1,5 @@
+Written by Mustafizur Prodhan (Mufassa), 2026.
+
 """
 clean_top.py - Convert a raw capture of the Linux `top` command (with ANSI
 escape codes) into a clean, readable text report.
