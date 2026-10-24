@@ -1,5 +1,7 @@
 import re
 
+from pathlib import Path
+
 # cleaning up the ANSI characters that are cluttering the top command report
 ANSI_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]|\x1b[()][A-Za-z0-9]|\x1b[=>]")
 HOME_RE = re.compile(r"\x1b\[H") # start of a new top report
@@ -40,3 +42,18 @@ def format_report(frames):
         proc_report.extend(lines)
         proc_report.append("")
     return "\n".join(proc_report)
+
+def remove_file(path, confirm=True):
+    file_del = Path(input("Which file needs to be removed: ").strip())
+
+    if not file_del.is_file():
+        print(f"File not found: {file_del}")
+        return False
+
+    if confirm and input(f"Permanently delete {file_del}? (y/n): ").strip().lower() !="y":
+        print("Deletion cancelled.")
+        return False
+    file_del.unlink()
+    print("File deleted successfully")
+
+    
