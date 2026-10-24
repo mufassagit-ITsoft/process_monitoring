@@ -13,7 +13,7 @@ def split_frames(raw):
 
 def clean_lines(frame):
     text = ANSI_RE.sub("", frame).replace("\r", "")
-    return [ln.strip() for ln in text.split("\n")]
+    return [ln for ln in text.split("\n")]
 
 # builds the report after splitting the ANSI file and then cleaning the ANSI lines
 def build_frames(raw, fill=True):
